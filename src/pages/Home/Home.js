@@ -1,27 +1,27 @@
 import React, { useEffect, useState } from "react";
 import "./Home.scss";
 import characterQuery from "../../services/homeService";
+import ContentCard from "../../components/Card/Card";
 
 const Home = () => {
   const [items, setItems] = useState([{}]);
 
   useEffect(() => {
-    characterQuery({params: {
-      name:"Rick"
-  }}).then(res => {
+    characterQuery({
+      params: {
+        name: "Rick"
+      }
+    }).then(res => {
       setItems(res.results);
     });
   }, []);
   return (
     <div className="home-container">
-      {items.map((each, index) => {
-        return (
-          <div key={index}>
-            <img src={each.image} alt={each.name}/>
-            <p>{each.name}</p>
-          </div>
-        );
-      })}
+      <div className="home-column">
+        {items.map((each, index) => {
+          return <ContentCard title={each.name} image={each.image} />;
+        })}
+      </div>
     </div>
   );
 };

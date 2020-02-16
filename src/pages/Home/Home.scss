@@ -1,11 +1,20 @@
-.home-container{
+.home-container {
+  display: grid;
+  margin: 65px 40px;
+  justify-items: center;
+  flex-flow: column;
+  .home-title{
+    margin-top:20px;
+    margin-bottom: 50px;
+    color:#d9cccc;
+  }
+  .home-column {
+    width: 90%;
     display: flex;
-    margin:40px 40px;
-    align-items: center;
-    flex-flow: column;
-    .home-column{
-        width: 80%;
-        display: flex;
-        flex-flow: wrap;
-        }
+    justify-content: center;
+    flex-flow: wrap;
+    .card-container {
+      min-width: 300px;
+    }
+  }
 }

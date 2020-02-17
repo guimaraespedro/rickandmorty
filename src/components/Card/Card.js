@@ -36,7 +36,7 @@ const useStyles = makeStyles({
     position: "relative",
     display: "flex",
     borderBottom:'1px solid #f0d1d9',
-    color:'#700925'
+    color:'#ff3b21'
   },
   contentContainer: {
     position: "relative",

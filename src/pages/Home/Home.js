@@ -1,35 +1,46 @@
 import React, { useEffect, useState } from "react";
 import "./Home.scss";
 import characterQuery from "../../services/homeService";
-import ContentCard from "../../components/Card/Card";
+import Card from "../../components/Card/Card";
 import { Typography } from "@material-ui/core";
+import Pagination from "@material-ui/lab/Pagination";
 
 const Home = () => {
   const [items, setItems] = useState([{}]);
+  const [pages, setPages] = useState(0);
+  const [page, setPage] = useState(1);
+
 
   useEffect(() => {
     characterQuery({
       params: {
-        limit:20
+        page
       }
     }).then(res => {
       setItems(res.results);
+      setPages(res.info.pages);
     });
-  }, []);
+  }, [page]);
+
+  const handleChangePage=(event,page)=>{
+    setPage(page)
+  }
+
   return (
     <div className="home-container">
-      <Typography className='home-title' variant='h4'>
-          What do you want to know about them? Here we have all the infos!
-        </Typography>
+      <Typography className="home-title" variant="h5">
+        What do you want to know about them? Here we have all the infos!
+      </Typography>
       <div className="home-column">
         {items.map((each, index) => {
           return (
-            <div className="card-container">
-          <ContentCard info={each}/>
-          </div>
-          )
+            <div className="card-container" key={index}>
+              <Card info={each} />
+            </div>
+          );
         })}
       </div>
+      <Pagination className='pagination-item' count={pages} color='primary' page={page} onChange={handleChangePage}/>
     </div>
   );
 };

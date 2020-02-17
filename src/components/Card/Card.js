@@ -13,18 +13,11 @@ const useStyles = makeStyles({
     maxWidth: 300,
     minWidth: 200,
     marginTop: 10,
-    marginBottom: 100,
+    marginBottom: 10,
     marginRight: 20,
     display: "flex",
-    "&:hover": {
-      marginBottom: 5
-    },
-    "&:hover $about": {
-      position: "relative",
-      display: "flex"
-    },
     flexShrink: 1,
-    backgroundColor:'#1a0101'
+    backgroundColor:'#1c1d24'
   },
   media: {
     height: 300,
@@ -40,8 +33,8 @@ const useStyles = makeStyles({
     margin: 5,
     justifyContent:'space-between',
     width:'100%',
-    display: "none",
-    position: "absolute",
+    position: "relative",
+    display: "flex",
     borderBottom:'1px solid #f0d1d9',
     color:'#700925'
   },

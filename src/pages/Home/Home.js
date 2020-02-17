@@ -10,7 +10,7 @@ const Home = () => {
   useEffect(() => {
     characterQuery({
       params: {
-        name: "Rick"
+        limit:20
       }
     }).then(res => {
       setItems(res.results);

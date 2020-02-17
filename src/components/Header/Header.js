@@ -11,7 +11,7 @@ const Header = () => {
       flexGrow: 1
     },
     toolbar:{
-        backgroundColor:'#1a0101'
+        backgroundColor:'#1c1d24'
     },
     content:{
       color:'#d9cccc'

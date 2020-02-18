@@ -4,11 +4,14 @@ import characterQuery from "../../services/homeService";
 import Card from "../../components/Card/Card";
 import { Typography } from "@material-ui/core";
 import Pagination from "@material-ui/lab/Pagination";
+import { useHistory,useParams } from "react-router-dom";
 
 const Home = () => {
   const [items, setItems] = useState([{}]);
   const [pages, setPages] = useState(0);
-  const [page, setPage] = useState(1);
+  let {id} = useParams();
+  const [page, setPage] = useState(id?id:1);
+  let history = useHistory();
 
 
   useEffect(() => {
@@ -19,10 +22,14 @@ const Home = () => {
     }).then(res => {
       setItems(res.results);
       setPages(res.info.pages);
-    });
+    }).catch(error=>{
+      
+    })
+    console.log(id);
   }, [page]);
 
   const handleChangePage=(event,page)=>{
+    history.push(`/home/${page}`)
     setPage(page)
   }
 
@@ -40,7 +47,7 @@ const Home = () => {
           );
         })}
       </div>
-      <Pagination className='pagination-item' count={pages} color='primary' page={page} onChange={handleChangePage}/>
+      <Pagination  className='pagination-item' count={pages} color='primary' page={page} onChange={handleChangePage}/>
     </div>
   );
 };

@@ -54,7 +54,7 @@ const Header = () => {
             <NavLink to="/">
               <Button className={classes.homeButton}>Home</Button>
             </NavLink>
-            <NavLink to="/">
+            <NavLink to="/episodes">
               <Button className={classes.homeButton}>Episodes</Button>
             </NavLink>
           </div>

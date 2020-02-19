@@ -51,7 +51,7 @@ const Header = () => {
               A Rick and morty page
             </Typography>
             <div className={classes.buttonsContainer}>
-            <NavLink to="/">
+            <NavLink to="/home">
               <Button className={classes.homeButton}>Home</Button>
             </NavLink>
             <NavLink to="/episodes">

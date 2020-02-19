@@ -4,34 +4,32 @@ import characterQuery from "../../services/homeService";
 import Card from "../../components/Card/Card";
 import { Typography } from "@material-ui/core";
 import Pagination from "@material-ui/lab/Pagination";
-import { useHistory,useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 const Home = () => {
   const [items, setItems] = useState([{}]);
   const [pages, setPages] = useState(0);
-  let {id} = useParams();
-  const [page, setPage] = useState(id?id:1);
+  let { id } = useParams();
+  const [page, setPage] = useState(id ? id : 1);
   let history = useHistory();
-
 
   useEffect(() => {
     characterQuery({
       params: {
         page
       }
-    }).then(res => {
-      setItems(res.results);
-      setPages(res.info.pages);
-    }).catch(error=>{
-      
     })
-    console.log(id);
+      .then(res => {
+        setItems(res.results);
+        setPages(res.info.pages);
+      })
+      .catch(error => {});
   }, [page]);
 
-  const handleChangePage=(event,page)=>{
-    history.push(`/home/${page}`)
-    setPage(page)
-  }
+  const handleChangePage = (event, page) => {
+    history.push(`/home/${page}`);
+    setPage(page);
+  };
 
   return (
     <div className="home-container">
@@ -39,7 +37,7 @@ const Home = () => {
         What do you want to know about them? Here we have all the infos!
       </Typography>
       <div className="home-column">
-        {items.map((each, index) => {
+        {items && items.map((each, index) => {
           return (
             <div className="card-container" key={index}>
               <Card info={each} />
@@ -47,7 +45,12 @@ const Home = () => {
           );
         })}
       </div>
-      <Pagination  className='pagination-item' count={pages} color='primary' page={page} onChange={handleChangePage}/>
+      <Pagination
+        className="pagination-item"
+        count={pages}
+        color="primary"
+        onChange={handleChangePage}
+      />
     </div>
   );
 };

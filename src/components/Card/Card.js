@@ -5,6 +5,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
+import Skeleton from '@material-ui/lab/Skeleton'
 
 const useStyles = makeStyles({
   root: {
@@ -21,7 +22,8 @@ const useStyles = makeStyles({
     height: 300,
     width:300,
     display: "flex",
-    backgroundSize: "unset"
+    backgroundSize: "unset",
+    backgroundColor:'gray'
   },
   name: {
     display: "flex",
@@ -44,19 +46,27 @@ const useStyles = makeStyles({
   },
   aboutTitle:{
     color:'#d9cccc'
+  },
+  skeleton:{
+    opacity:0.2,
+    background:'#26262e'
   }
 });
 
 const ContentCard = props => {
+  const {loading=false} = props;
   const classes = useStyles();
+
   return (
+
     <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
+        <CardActionArea>
+        { loading? (<Skeleton animation='pulse' variant='rect' width='300px' height='300px' className={classes.skeleton}/>):
+        (<CardMedia
           className={classes.media}
           image={props.info.image}
           title={props.info.name}
-        />
+        />)}
         <CardContent className={classes.contentContainer}>
           <Typography className={classes.name} component="h6" variant="h6">
             {props.info.name}

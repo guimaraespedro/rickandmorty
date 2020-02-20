@@ -9,11 +9,13 @@ import { useHistory, useParams } from "react-router-dom";
 const Home = () => {
   const [items, setItems] = useState([{}]);
   const [pages, setPages] = useState(0);
+  const [loading, setLoading] = useState(0);
   let { id } = useParams();
   const [page, setPage] = useState(id ? id : 1);
   let history = useHistory();
 
   useEffect(() => {
+    setLoading(true)
     characterQuery({
       params: {
         page
@@ -22,8 +24,10 @@ const Home = () => {
       .then(res => {
         setItems(res.results);
         setPages(res.info.pages);
+        setLoading(false)
       })
       .catch(error => {});
+
   }, [page]);
 
   const handleChangePage = (event, page) => {
@@ -40,7 +44,7 @@ const Home = () => {
         {items && items.map((each, index) => {
           return (
             <div className="card-container" key={index}>
-              <Card info={each} />
+              <Card info={each} loading={loading}/>
             </div>
           );
         })}

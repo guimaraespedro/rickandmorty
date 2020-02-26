@@ -4,8 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import { NavLink } from "react-router-dom";
+
 
 const Header = () => {
   const useStyles = makeStyles({
@@ -20,11 +19,6 @@ const Header = () => {
     },
     content: {
       color: "#d9cccc"
-    },
-    buttonsContainer: {
-      width:300,
-      display: "flex",
-      justifyContent: "flex-end"
     },
     homeButton: {
       color: "#d9cccc",
@@ -51,12 +45,6 @@ const Header = () => {
               A Rick and morty page
             </Typography>
             <div className={classes.buttonsContainer}>
-            <NavLink to="/home">
-              <Button className={classes.homeButton}>Home</Button>
-            </NavLink>
-            <NavLink to="/episodes">
-              <Button className={classes.homeButton}>Episodes</Button>
-            </NavLink>
           </div>
           </div>
         </Toolbar>

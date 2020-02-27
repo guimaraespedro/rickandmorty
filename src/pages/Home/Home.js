@@ -17,7 +17,7 @@ const Home = () => {
   let history = useHistory();
 
   useEffect(() => {
-    setLoading(true);
+    setLoading(1);
     characterQuery({
       params: {
         page
@@ -26,7 +26,7 @@ const Home = () => {
       .then(res => {
         setItems(res.results);
         setPages(res.info.pages);
-        setLoading(false);
+        setLoading(0);
       })
       .catch(error => {});
   }, [page]);

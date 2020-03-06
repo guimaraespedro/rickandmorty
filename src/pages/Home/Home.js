@@ -17,10 +17,9 @@ const Home = () => {
   const [search, setSearch] = useState("");
   const [filterSelect, setFilterSelect] = useState("");
   let { id } = useParams();
-  const [page, setPage] = useState(id ? parseInt(id) : 1);
   let history = useHistory();
   const [params, setParams] = useState({
-    page
+    page:id ? parseInt(id) : 1
   });
 
   useEffect(() => {
@@ -35,7 +34,7 @@ const Home = () => {
       })
       .catch(error => {});
     console.log(params);
-  }, [page, params]);
+  }, [params]);
 
   const handleChangePage = (event, page) => {
     history.push(`/home/${page}`);
@@ -51,31 +50,10 @@ const Home = () => {
   const handleSubmit = e => {
     e.preventDefault();
     if (!filterSelect || !search) {
-      console.log('aqui');
-      if(params.page){
-      setLoading(1);
-      characterQuery({
-        page:1
-      })
-        .then(res => {
-          setItems(res.results);
-          setPages(res.info.pages);
-          setLoading(0);
-        })
-        .catch(error => {});
-      } else setParams({page});
+      setParams({page:1});
     } else {
       setLoading(1);
-      setParams({page:1, [filterSelect]:search})
-      characterQuery({
-        params
-      })
-        .then(res => {
-          setItems(res.results);
-          setPages(res.info.pages);
-          setLoading(0);
-        })
-        .catch(error => {});
+      setParams({page:1, [filterSelect]:search});
     }
   };
 

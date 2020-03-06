@@ -15,8 +15,8 @@ const useStyles = makeStyles({
     marginBottom: 10,
     flexShrink: 1,
     backgroundColor: "#1c1d24",
-    '&:hover':{
-      scale:2
+    "&:hover": {
+      scale: 2
     }
   },
   media: {
@@ -37,7 +37,7 @@ const useStyles = makeStyles({
     display: "flex",
     borderBottom: "1px solid rgb(68, 68, 68);",
     color: "#ff3b21",
-    height: 39,
+    height: 39
   },
   contentContainer: {
     position: "relative",
@@ -57,11 +57,14 @@ const useStyles = makeStyles({
   aboutInfo: {
     textAlign: "end",
     alignSelf: "center"
+  },
+  teste: {
+    color: "white"
   }
 });
 
 const ContentCard = props => {
-  const { loading = false } = props.loading;
+  const { loading = false } = props;
   const classes = useStyles();
 
   return (
@@ -81,31 +84,74 @@ const ContentCard = props => {
           title={props.info.name}
         />
       )}
-      <CardContent className={classes.contentContainer}>
-        <Typography className={classes.name} component="h6" variant="h6">
-          {props.info.name}
-        </Typography>
-        <Typography className={classes.about}>
-          <span className={classes.aboutTitle}>Status</span>{" "}
-          <span className={classes.aboutInfo}>{props.info.status}</span>
-        </Typography>
-        <Typography className={classes.about}>
-          <span className={classes.aboutTitle}>Species</span>
-          <span className={classes.aboutInfo}>{props.info.species}</span>
-        </Typography>
-        <Typography className={classes.about}>
-          <span className={classes.aboutTitle}>Gender</span>
-          <span className={classes.aboutInfo}>{props.info.gender}</span>
-        </Typography>
-        <Typography className={classes.about}>
-          <span className={classes.aboutTitle}>Origin</span>
-          <span className={classes.aboutInfo}>{props.info.origin.name}</span>
-        </Typography>
-        <Typography className={classes.about}>
-          <span className={classes.aboutTitle}>Last Location</span>
-          <span className={classes.aboutInfo}>{props.info.location.name}</span>
-        </Typography>
-      </CardContent>
+      {loading ? (
+        <>
+          <Skeleton
+            className={classes.skeleton}
+            animation="wave"
+            height={60}
+            width="100%"
+          />
+          <Skeleton
+            className={classes.skeleton}
+            animation="pulse"
+            height={40}
+            width="100%"
+          />
+          <Skeleton
+            className={classes.skeleton}
+            animation="pulse"
+            height={40}
+            width="100%"
+          />
+          <Skeleton
+            className={classes.skeleton}
+            animation="pulse"
+            height={40}
+            width="100%"
+          />
+          <Skeleton
+            className={classes.skeleton}
+            animation="pulse"
+            height={40}
+            width="100%"
+          />
+          <Skeleton
+            className={classes.skeleton}
+            animation="pulse"
+            height={40}
+            width="100%"
+          />
+        </>
+      ) : (
+        <CardContent className={classes.contentContainer}>
+          <Typography className={classes.name} component="h6" variant="h6">
+            {props.info.name}
+          </Typography>
+          <Typography className={classes.about}>
+            <span className={classes.aboutTitle}>Status</span>{" "}
+            <span className={classes.aboutInfo}>{props.info.status}</span>
+          </Typography>
+          <Typography className={classes.about}>
+            <span className={classes.aboutTitle}>Species</span>
+            <span className={classes.aboutInfo}>{props.info.species}</span>
+          </Typography>
+          <Typography className={classes.about}>
+            <span className={classes.aboutTitle}>Gender</span>
+            <span className={classes.aboutInfo}>{props.info.gender}</span>
+          </Typography>
+          <Typography className={classes.about}>
+            <span className={classes.aboutTitle}>Origin</span>
+            <span className={classes.aboutInfo}>{props.info.origin.name}</span>
+          </Typography>
+          <Typography className={classes.about}>
+            <span className={classes.aboutTitle}>Last Location</span>
+            <span className={classes.aboutInfo}>
+              {props.info.location.name}
+            </span>
+          </Typography>
+        </CardContent>
+      )}
     </Card>
   );
 };
